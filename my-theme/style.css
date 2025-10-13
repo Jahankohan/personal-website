@@ -1,0 +1,17 @@
+/*
+Theme Name: Personal Website Design
+Description: A modern WordPress theme converted from React + Tailwind, featuring a clean design for personal websites with blog, consultancy, and resource sections.
+Version: 1.0
+Author: Your Name
+Text Domain: personal-website-design
+Requires at least: 6.0
+Tested up to: 6.4
+Requires PHP: 8.0
+License: GPL v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned.
+*/
+
+/* Theme styles are loaded via functions.php to ensure proper WordPress integration */
