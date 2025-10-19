@@ -71,14 +71,14 @@
                 <?php if (has_custom_logo()) : ?>
                     <?php the_custom_logo(); ?>
                 <?php else : ?>
-                    <span class="tracking-tight" style="color: var(--deep-tech-blue);">
+                    <span class="tracking-tight nav-logo text-white transition-colors duration-300">
                         <?php bloginfo('name'); ?>
                     </span>
                 <?php endif; ?>
             </div>
 
             <!-- Desktop Navigation -->
-            <div class="hidden md:flex items-center space-x-8">
+            <div class="hidden md:flex items-center space-x-8" id="desktop-nav">
                 <?php
                 wp_nav_menu(array(
                     'theme_location'  => 'primary',
@@ -98,7 +98,7 @@
             </div>
 
             <!-- Mobile Menu Button -->
-            <button class="md:hidden mobile-menu-button" 
+            <button class="md:hidden mobile-menu-button text-white transition-colors duration-300" 
                     id="mobile-menu-button"
                     aria-expanded="false"
                     aria-controls="mobile-menu">
@@ -134,12 +134,59 @@
     // Navigation scroll effect
     window.addEventListener('scroll', function() {
         const nav = document.getElementById('main-navigation');
+        const navLogo = document.querySelector('.nav-logo');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const navLinks = document.querySelectorAll('#desktop-nav a:not(.inline-flex)');
+        
         if (window.scrollY > 50) {
+            // Scrolled - white background, dark text
             nav.classList.remove('bg-transparent');
             nav.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-lg');
+            
+            // Change text colors to dark
+            if (navLogo) {
+                navLogo.classList.remove('text-white');
+                navLogo.classList.add('text-gray-900');
+            }
+            if (mobileMenuButton) {
+                mobileMenuButton.classList.remove('text-white');
+                mobileMenuButton.classList.add('text-gray-900');
+            }
+            navLinks.forEach(link => {
+                link.style.color = 'var(--deep-tech-blue)';
+            });
         } else {
+            // At top - transparent background, white text
             nav.classList.add('bg-transparent');
             nav.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-lg');
+            
+            // Change text colors to white
+            if (navLogo) {
+                navLogo.classList.remove('text-gray-900');
+                navLogo.classList.add('text-white');
+            }
+            if (mobileMenuButton) {
+                mobileMenuButton.classList.remove('text-gray-900');
+                mobileMenuButton.classList.add('text-white');
+            }
+            navLinks.forEach(link => {
+                link.style.color = 'white';
+            });
+        }
+    });
+
+    // Mobile menu toggle
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', function() {
+                const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+                
+                mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+                mobileMenu.classList.toggle('hidden');
+            });
         }
     });
 </script>

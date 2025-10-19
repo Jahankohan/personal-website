@@ -6,7 +6,16 @@
  * @package PersonalWebsiteDesign
  */
 
-get_header(); ?>
+?>
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
+<head>
+    <meta charset="<?php bloginfo('charset'); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php wp_head(); ?>
+</head>
+<body <?php body_class(); ?>>
+<?php wp_body_open(); ?>
 
 <main id="main" class="site-main" role="main">
 
@@ -68,6 +77,48 @@ get_header(); ?>
                     </p>
                 </div>
 
+                <!-- Featured Card -->
+                <div class="mb-8 animate-slide-up">
+                    <div class="bg-white rounded-xl overflow-hidden border-2 hover:shadow-2xl transition-all duration-300 cursor-pointer" 
+                         style="border-color: var(--warm-ember);">
+                        <!-- Gradient top bar -->
+                        <div class="h-2" style="background: linear-gradient(90deg, var(--warm-ember) 0%, var(--sunset-orange) 100%);"></div>
+                        
+                        <div class="p-6">
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center" 
+                                     style="background-color: var(--warm-ember);">
+                                    <svg class="text-white w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 2v4M22 4h-4"></path>
+                                        <circle cx="4" cy="20" r="2"></circle>
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <span class="inline-flex items-center justify-center rounded-md border px-2 py-0.5 font-medium text-xs mb-2"
+                                          style="background-color: var(--warm-ember); color: white; border: transparent;">
+                                        🔥 FEATURED
+                                    </span>
+                                    <h3 class="mb-2 text-xl font-semibold" style="color: var(--deep-tech-blue);">
+                                        New Book: The Human Algorithm
+                                    </h3>
+                                    <p class="text-gray-600 mb-3">
+                                        Discover how to harness AI and blockchain to amplify human potential. Download the first chapter free!
+                                    </p>
+                                    <div class="flex items-center gap-2">
+                                        <svg class="w-4 h-4" style="color: var(--sunset-orange);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17"></path>
+                                        </svg>
+                                        <span class="text-sm" style="color: var(--sunset-orange);">
+                                            Free Sample Chapter Available
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Main Links -->
                 <div class="space-y-4 mb-8">
                     <?php
@@ -75,7 +126,7 @@ get_header(); ?>
                         array(
                             'title' => 'Read My Book',
                             'description' => 'Discover "The Human Algorithm" and get a free chapter',
-                            'url' => home_url('/book-detail'),
+                            'url' => home_url('/book/'),
                             'icon' => '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>',
                             'color' => 'var(--sunset-orange)'
                         ),
@@ -96,21 +147,21 @@ get_header(); ?>
                         array(
                             'title' => 'Read My Blog',
                             'description' => 'Insights on AI, blockchain, and human-centered tech',
-                            'url' => home_url('/blog'),
+                            'url' => get_option('page_for_posts') ? get_permalink(get_option('page_for_posts')) : home_url('/'),
                             'icon' => '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>',
                             'color' => 'var(--neural-purple)'
                         ),
                         array(
                             'title' => 'Get in Touch',
                             'description' => 'Consultancy, speaking, collaborations, or just say hello',
-                            'url' => home_url('/contact'),
+                            'url' => home_url('/#contact'),
                             'icon' => '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>',
                             'color' => 'var(--warm-ember)'
                         ),
                         array(
                             'title' => 'Subscribe to Newsletter',
                             'description' => 'Weekly insights delivered to your inbox',
-                            'url' => home_url('/contact#newsletter'),
+                            'url' => home_url('/#contact'),
                             'icon' => '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>',
                             'color' => 'var(--deep-tech-blue)'
                         )
@@ -120,15 +171,16 @@ get_header(); ?>
                     ?>
                         <div class="animate-slide-up" style="animation-delay: <?php echo $index * 0.1; ?>s;">
                             <a href="<?php echo esc_url($link['url']); ?>" 
-                               class="group block w-full p-5 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100"
+                               class="group block w-full py-5 px-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] border-2"
+                               style="border-color: <?php echo $link['color']; ?>;"
                                <?php echo (strpos($link['url'], 'http') === 0) ? 'target="_blank" rel="noopener noreferrer"' : ''; ?>>
                                 <div class="flex items-center gap-4">
-                                    <div class="w-12 h-12 rounded-lg flex items-center justify-center text-white flex-shrink-0"
+                                    <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white flex-shrink-0"
                                          style="background-color: <?php echo $link['color']; ?>;">
                                         <?php echo $link['icon']; ?>
                                     </div>
                                     <div class="flex-1 min-w-0">
-                                        <h3 class="font-bold text-lg text-gray-900 group-hover:text-blue-600 transition-colors">
+                                        <h3 class="text-lg font-medium mb-1" style="color: var(--deep-tech-blue);">
                                             <?php echo esc_html($link['title']); ?>
                                         </h3>
                                         <?php if (!empty($link['description'])) : ?>
@@ -148,44 +200,59 @@ get_header(); ?>
                 </div>
 
                 <!-- Social Links -->
-                <div class="text-center mb-8">
-                    <h3 class="text-lg font-semibold mb-4 text-gray-900">Connect with me</h3>
-                    <div class="flex justify-center gap-4">
+                <div class="text-center animate-slide-up">
+                    <p class="text-gray-600 mb-4">Connect with me</p>
+                    <div class="flex items-center justify-center gap-4 flex-wrap mb-8">
                         <?php
                         $social_links = array(
-                            array('name' => 'Twitter', 'url' => get_theme_mod('social_twitter', 'https://twitter.com'), 'color' => '#1DA1F2', 'icon' => '<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>'),
-                            array('name' => 'LinkedIn', 'url' => get_theme_mod('social_linkedin', 'https://linkedin.com'), 'color' => '#0077B5', 'icon' => '<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>'),
-                            array('name' => 'YouTube', 'url' => get_theme_mod('social_youtube', 'https://youtube.com'), 'color' => '#FF0000', 'icon' => '<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>'),
-                            array('name' => 'Instagram', 'url' => get_theme_mod('social_instagram', 'https://instagram.com'), 'color' => '#E4405F', 'icon' => '<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.017 0C8.396 0 7.989.016 6.756.072 5.526.127 4.706.333 3.995.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.139C.333 4.85.127 5.67.072 6.9.016 8.134 0 8.541 0 12.017s.016 3.883.072 5.116c.055 1.23.26 2.05.558 2.761.306.789.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.711.297 1.531.503 2.761.558C7.989 23.984 8.396 24 12.017 24s3.883-.016 5.116-.072c1.23-.055 2.05-.26 2.761-.558a5.806 5.806 0 0 0 2.126-1.384 5.806 5.806 0 0 0 1.384-2.126c.297-.711.503-1.531.558-2.761.056-1.233.072-1.64.072-5.116s-.016-3.883-.072-5.116c-.055-1.23-.26-2.05-.558-2.761a5.806 5.806 0 0 0-1.384-2.126A5.806 5.806 0 0 0 19.894.63C19.183.333 18.363.127 17.133.072 15.9.016 15.493 0 12.017 0zm0 2.167c3.803 0 4.254.014 5.756.067 1.388.063 2.144.295 2.646.49a4.424 4.424 0 0 1 1.62 1.055 4.424 4.424 0 0 1 1.055 1.62c.195.502.427 1.258.49 2.646.053 1.502.067 1.953.067 5.756s-.014 4.254-.067 5.756c-.063 1.388-.295 2.144-.49 2.646a4.424 4.424 0 0 1-1.055 1.62 4.424 4.424 0 0 1-1.62 1.055c-.502.195-1.258.427-2.646.49-1.502.053-1.953.067-5.756.067s-4.254-.014-5.756-.067c-1.388-.063-2.144-.295-2.646-.49a4.424 4.424 0 0 1-1.62-1.055 4.424 4.424 0 0 1-1.055-1.62c-.195-.502-.427-1.258-.49-2.646-.053-1.502-.067-1.953-.067-5.756s.014-4.254.067-5.756c.063-1.388.295-2.144.49-2.646a4.424 4.424 0 0 1 1.055-1.62 4.424 4.424 0 0 1 1.62-1.055c.502-.195 1.258-.427 2.646-.49 1.502-.053 1.953-.067 5.756-.067z"/><path d="M12.017 5.838a6.179 6.179 0 1 0 0 12.358 6.179 6.179 0 0 0 0-12.358zm0 10.191a4.012 4.012 0 1 1 0-8.024 4.012 4.012 0 0 1 0 8.024z"/><circle cx="18.406" cy="5.594" r="1.44"/></svg>'),
-                            array('name' => 'GitHub', 'url' => get_theme_mod('social_github', 'https://github.com'), 'color' => '#333333', 'icon' => '<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 10.956.557-.085-.24-.568-.24-1.277v-3.826c-3.338.724-4.042-1.61-4.042-1.61C4.822 18.477 4.49 17.4 4.49 17.4c-1.093-.745.083-.729.083-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>')
+                            array(
+                                'name' => 'Twitter',
+                                'url' => get_theme_mod('social_twitter', 'https://twitter.com/yourusername'),
+                                'color' => 'rgb(29, 161, 242)',
+                                'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-twitter text-white" aria-hidden="true"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>'
+                            ),
+                            array(
+                                'name' => 'LinkedIn',
+                                'url' => get_theme_mod('social_linkedin', 'https://linkedin.com/in/yourprofile'),
+                                'color' => 'rgb(0, 119, 181)',
+                                'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin text-white" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>'
+                            ),
+                            array(
+                                'name' => 'YouTube',
+                                'url' => get_theme_mod('social_youtube', 'https://youtube.com/@yourchannel'),
+                                'color' => 'rgb(255, 0, 0)',
+                                'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-youtube text-white" aria-hidden="true"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"></path><path d="m10 15 5-3-5-3z"></path></svg>'
+                            ),
+                            array(
+                                'name' => 'Instagram',
+                                'url' => get_theme_mod('social_instagram', 'https://instagram.com/yourhandle'),
+                                'color' => 'rgb(228, 64, 95)',
+                                'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram text-white" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>'
+                            ),
+                            array(
+                                'name' => 'GitHub',
+                                'url' => get_theme_mod('social_github', 'https://github.com/yourusername'),
+                                'color' => 'rgb(51, 51, 51)',
+                                'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github text-white" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>'
+                            )
                         );
 
-                        foreach ($social_links as $index => $social) :
-                            if (!empty($social['url']) && $social['url'] !== 'https://twitter.com' && $social['url'] !== 'https://linkedin.com') : // Only show if URL is set
+                        foreach ($social_links as $social) :
                         ?>
                             <a href="<?php echo esc_url($social['url']); ?>" 
                                target="_blank" 
                                rel="noopener noreferrer"
-                               class="w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 hover:-translate-y-1 text-white"
+                               class="w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300"
                                style="background-color: <?php echo $social['color']; ?>;"
                                aria-label="<?php echo esc_attr($social['name']); ?>">
                                 <?php echo $social['icon']; ?>
                             </a>
-                        <?php 
-                            endif;
-                        endforeach; 
-                        ?>
+                        <?php endforeach; ?>
                     </div>
-                </div>
-
-                <!-- Footer Bio -->
-                <div class="text-center animate-slide-up">
-                    <p class="text-gray-500 text-sm mb-2">
-                        Building a future where technology amplifies humanity ✨
-                    </p>
-                    <p class="text-gray-400 text-xs">
-                        © <?php echo date('Y'); ?> All rights reserved.
-                    </p>
+                    <div>
+                        <p class="text-gray-500 text-sm mb-2">Building a future where technology amplifies humanity ✨</p>
+                        <p class="text-gray-400 text-xs">© <?php echo date('Y'); ?> All rights reserved.</p>
+                    </div>
                 </div>
 
                 <!-- Back to Home Link -->
@@ -222,5 +289,6 @@ get_header(); ?>
 
 </main><!-- #main -->
 
-<?php
-get_footer();
+<?php wp_footer(); ?>
+</body>
+</html>

@@ -163,8 +163,8 @@ class Personal_Website_Design_Nav_Walker extends Walker_Nav_Menu {
     
     function start_el(&$output, $item, $depth = 0, $args = null, $id = 0) {
         $output .= '<a href="' . esc_url($item->url) . '" ';
-        $output .= 'class="transition-colors hover:opacity-80" ';
-        $output .= 'style="color: var(--deep-tech-blue);">';
+        $output .= 'class="nav-link transition-colors duration-300 hover:opacity-80" ';
+        $output .= 'style="color: white;">';
         $output .= esc_html($item->title);
         $output .= '</a>';
     }
@@ -204,7 +204,7 @@ function personal_website_design_fallback_menu() {
     );
     
     foreach ($menu_items as $item) {
-        echo '<a href="' . esc_url($item['url']) . '" class="transition-colors hover:opacity-80" style="color: var(--deep-tech-blue);">' . esc_html($item['title']) . '</a>';
+        echo '<a href="' . esc_url($item['url']) . '" class="nav-link transition-colors duration-300 hover:opacity-80" style="color: white;">' . esc_html($item['title']) . '</a>';
     }
 }
 

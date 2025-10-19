@@ -335,7 +335,7 @@ get_header(); ?>
                     </p>
 
                     <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-                        <a href="<?php echo esc_url(home_url('/contact')); ?>" 
+                        <a href="<?php echo esc_url(home_url('/consultation')); ?>" 
                            class="inline-flex items-center px-6 py-3 text-lg font-medium text-white rounded-lg transition-all hover:shadow-lg" 
                            style="background-color: var(--sunset-orange);">
                             <svg class="mr-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
